@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">JavaScript Quiz</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -19,24 +20,26 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="quiz.html">Quiz</a>
+                <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="#">Quiz</a>
                 <a class="nav-link" href="highscores.html">High Scores</a>
             </div>
-        </div>
     </nav>
+
     <section>
         <div class="jumbotron">
-            <h1 class="display-4">JavaScript Quiz</h1>
-            <p class="lead">This is a multiple choice quiz. You have 60 seconds to complete the quiz. For every wrong
-                answer you will loose time on the clock. Click the button of the answer you choose. Be quick! At the end
-                of the quiz enter your initials and save your score. Check where you rank on the high scores board in
-                the menu. Good luck.</p>
-            <hr class="my-4 d-flex justify-content-center">
-            <p>Click the button to Start</p>
-            <a class="btn btn-primary btn-lg" href="quiz.html" role="button">Start quiz now</a>
+            <h1 class="display-4" id="question">Question here</h1>
+            <hr class="my-4">
+        </div>
+        <div class="btn-group-vertical d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary bg-primary btn-lg" id="answer1">Answer</button>
+            <button type="button" class="btn btn-secondary bg-primary btn-lg" id="answer2">Answer</button>
+            <button type="button" class="btn btn-secondary bg-primary btn-lg" id="answer3">Answer</button>
+            <button type="button" class="btn btn-secondary bg-primary btn-lg" id="answer4">Answer</button>
         </div>
     </section>
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
