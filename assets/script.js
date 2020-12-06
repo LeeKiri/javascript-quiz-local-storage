@@ -150,8 +150,3 @@ function tickTimer() {
 function clearTimer() {
     clearTimeout(timerInterval);
 };
-function calculateBonus() {
-    if (timeLeft > 30) {
-        score += 10;
-    }
-};
