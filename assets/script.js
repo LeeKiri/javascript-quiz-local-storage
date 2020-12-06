@@ -3,11 +3,13 @@ var answerTwo = document.getElementById("answerTwo");
 var answerThree = document.getElementById("answerThree");
 var AnswerFour = document.getElementById("answerFour");
 var quizform = document.getElementById("quizform");
-//var onLoad = document.getElementById("body");
 var score = 0;
 var questionContainer = document.getElementById("questionContainer");
 var quizQuestion = document.getElementById("title");
 var currentQuestionNumber = 0;
+var timeLeft = 60;
+var timerInterval = 0;
+
 
 // list of all questions, choices, and answers
 var questions = [
@@ -44,6 +46,7 @@ var questions = [
         answer: "console.log"
     }
 ];
+
 //calls the page to load
 init();
 
@@ -56,6 +59,7 @@ function displayQuestion(questionBlock) {
     answerFour.textContent = questionBlock.choices[3];
 
 }
+
 // when the page loads init starts the quiz
 function init() {
     startQuiz();
@@ -64,20 +68,20 @@ function init() {
         checkAnswer(buttonClicked.innerText);
     });
 }
+
 //defines start quiz function
 function startQuiz() {
     displayQuestion(questions[0]);
-    //startTimer();
+    tickTimer();
 }
 
 function checkAnswer(userAnswerText) {
     if (userAnswerText === questions[currentQuestionNumber].answer) {
-        score++;
-        showNextQuestion();
+        score += 5;
     } else {
-        showNextQuestion();
-        //drop timer
+        timeLeft -= 10;
     }
+    showNextQuestion();
 }
 
 function showNextQuestion() {
@@ -88,6 +92,8 @@ function showNextQuestion() {
         displayQuestion(questions[currentQuestionNumber]);
     };
 }
+
+//code to end the quiz
 
 function endQuiz() {
     quizform.remove();
@@ -105,31 +111,46 @@ function endQuiz() {
     savehighScoreBtn.setAttribute("style", "background-color: #007bff; border-radius: 8px; margin-left:20px; padding-left: 15px; padding-right: 15px; color:white; border-color: #007bff; font-size:30px; font-weight:200");
     savehighScoreBtn.textContent = "Save";
     quizQuestion.appendChild(savehighScoreBtn);
-    
-    savehighScoreBtn.addEventListener("click", function(e) {
-         e.preventDefault();
-         if(userInitials.value === "") {
-             alert("Enter your intitials")
-         } else {
-             storeScore(userInitials.value, score);
+    clearTimer();
+
+    //code to save the score to local storage
+
+    savehighScoreBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (userInitials.value === "") {
+            alert("Enter your intitials")
+        } else {
+            storeScore(userInitials.value, score);
         }
-        
+
     });
-    
-    function storeScore(userName, newScore){
-        localStorage.setItem("newHighScoreAdded", JSON.stringify({userName, newScore}));
+
+
+    function storeScore(userName, newScore) {
+        localStorage.setItem("newHighScoreAdded", JSON.stringify({ userName, newScore }));
         window.location.assign("highscores.html");
     }
-}    
+}
 
-i = 60;
-function onTimer() {
-  document.getElementById("mycounter").innerHTML = i;
-  i--;
-  if (i < 0) {
-    alert('game over!');
-  }
-  else {
-    setTimeout(onTimer, 1000);
-  }
+// timer
+
+
+function tickTimer() {
+    document.getElementById("timeRemaining").innerHTML = timeLeft;
+    timeLeft--;
+    if (timeLeft < 0) {
+        alert('game over!');
+    }
+    else {
+        timerInterval = setTimeout(tickTimer, 1000);
+    }
+};
+
+function clearTimer() {
+    clearTimeout(timerInterval);
+};
+function calculateBonus() {
+    if (timeLeft > 30) {
+        score += 10;
+    }
 };
