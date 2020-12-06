@@ -140,6 +140,7 @@ function tickTimer() {
     timeLeft--;
     if (timeLeft < 0) {
         alert('game over!');
+        window.location.assign("highscores.html");
     }
     else {
         timerInterval = setTimeout(tickTimer, 1000);
