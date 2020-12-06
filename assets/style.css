@@ -2,20 +2,21 @@
     padding-left: 200px;
     padding-right: 200px;
 }
+.display-4{
+    font-size: xx-large;
+}
 .btn-group-vertical{
-    margin: 20px;
+    margin: 50px;
 }
 @media screen and (max-width: 768px) {
     .jumbotron{
         padding-right: 50px;
         padding-left: 50px;
     }
+}
 @media screen and (max-width: 500px) {
     .jumbotron{
         padding-left: 20px;
         padding-right: 20px;
-    }
-    .display-4{
-        font-size: x-large;
     }
 }

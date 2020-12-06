@@ -91,5 +91,20 @@ function showNextQuestion() {
 
 function endQuiz() {
     console.log("quiz ended", score)
+    quizform.remove();
+    quizQuestion.textContent= "Your score is " + score;
+    var userInput = document.createElement("p");
+    userInput.textContent = "To save your score enter your initials here";
+    userInput.setAttribute("style", "margin-left:50px; font-size: 30px; margin-top: 20px");
+    quizQuestion.appendChild(userInput);
+    var userInitials = document.createElement("input");
+    userInitials.setAttribute("type", "text");
+    userInitials.setAttribute("style", "margin-left:50px; width:6rem");
+    quizQuestion.appendChild(userInitials);
+    var savehighScoreBtn = document.createElement("button");
+    savehighScoreBtn.setAttribute("type", "button");
+    savehighScoreBtn.setAttribute("style", "background-color: #007bff; border-radius: 8px; margin-left:20px; padding-left: 15px; padding-right: 15px; color:white; border-color: #007bff; font-size:30px; font-weight:200");
+    savehighScoreBtn.textContent= "Save";
+    quizQuestion.appendChild(savehighScoreBtn);
 }
 
