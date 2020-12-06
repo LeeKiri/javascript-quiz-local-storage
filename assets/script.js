@@ -59,48 +59,37 @@ function displayQuestion(questionBlock) {
 // when the page loads init starts the quiz
 function init() {
     startQuiz();
-    quizform.addEventListener("click", function(e) {
+    quizform.addEventListener("click", function (e) {
         var buttonClicked = e.target;
-       checkAnswer(buttonClicked.innerText);
-});
+        checkAnswer(buttonClicked.innerText);
+    });
 }
 //defines start quiz function
 function startQuiz() {
-    displayQuestion(questions[0]); 
+    displayQuestion(questions[0]);
     //startTimer();
 }
 
 function checkAnswer(userAnswerText) {
-    console.log("the answer is " + userAnswerText);
+    if (userAnswerText === questions[currentQuestionNumber].answer) {
+        score++;
+        showNextQuestion();
+    } else {
+        showNextQuestion();
+        //drop timer
+    }
 }
 
 function showNextQuestion() {
-    currentQuestionNumber++;
-    displayQuestion(questions[currentQuestionNumber]);
+    if (currentQuestionNumber === questions.length - 1) {
+        endQuiz();
+    } else {
+        currentQuestionNumber++;
+        displayQuestion(questions[currentQuestionNumber]);
+    };
 }
 
-/*
-var imageContainer = document.querySelector(".img-container");
-
-imageContainer.addEventListener("click", function(event) {
-  var element = event.target;
-
-  if (element.matches("img")) {
-    var state = element.getAttribute("data-state");
-
-    if (state === "still") {
-      element.setAttribute("data-state", "animate");
-      element.setAttribute("src", element.getAttribute("data-animate"));
-    } else if (state === "animate") {
-      element.setAttribute("data-state", "still");
-      element.setAttribute("src", element.getAttribute("data-still"));
-    }
-  }
-});
-
-*/
-
-
-
-
+function endQuiz() {
+    console.log("quiz ended", score)
+}
 
