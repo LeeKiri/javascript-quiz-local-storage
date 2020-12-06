@@ -90,9 +90,8 @@ function showNextQuestion() {
 }
 
 function endQuiz() {
-    console.log("quiz ended", score)
     quizform.remove();
-    quizQuestion.textContent= "Your score is " + score;
+    quizQuestion.textContent = "Your score is " + score;
     var userInput = document.createElement("p");
     userInput.textContent = "To save your score enter your initials here";
     userInput.setAttribute("style", "margin-left:50px; font-size: 30px; margin-top: 20px");
@@ -104,7 +103,22 @@ function endQuiz() {
     var savehighScoreBtn = document.createElement("button");
     savehighScoreBtn.setAttribute("type", "button");
     savehighScoreBtn.setAttribute("style", "background-color: #007bff; border-radius: 8px; margin-left:20px; padding-left: 15px; padding-right: 15px; color:white; border-color: #007bff; font-size:30px; font-weight:200");
-    savehighScoreBtn.textContent= "Save";
+    savehighScoreBtn.textContent = "Save";
     quizQuestion.appendChild(savehighScoreBtn);
-}
+    
+    savehighScoreBtn.addEventListener("click", function(e) {
+         e.preventDefault();
+         if(userInitials.value === "") {
+             alert("Enter your intitials")
+         } else {
+             storeScore(userInitials.value, score);
+        }
+        
+    });
+    
+    function storeScore(userName, newScore){
+        localStorage.setItem("newHighScoreAdded", JSON.stringify({userName, newScore}));
+        window.location.assign("highscores.html");
+    }
+}    
 
